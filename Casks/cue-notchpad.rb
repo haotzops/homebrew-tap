@@ -7,7 +7,7 @@ cask "cue-notchpad" do
   desc "Notch-attached prompt editor for command-line workflows"
   homepage "https://github.com/haotzops/cue-notchpad"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Cue Notchpad.app"
   binary "#{appdir}/Cue Notchpad.app/Contents/MacOS/cue", target: "cue"

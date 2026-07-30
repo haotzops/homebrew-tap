@@ -12,11 +12,15 @@ cask "cue-notchpad" do
   app "Cue Notchpad.app"
   binary "#{appdir}/Cue Notchpad.app/Contents/MacOS/cue", target: "cue"
 
+  postflight do
+    app_path = appdir/"Cue Notchpad.app"
+    next unless app_path.exist?
+
+    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", app_path]
+  end
+
   caveats <<~EOS
     Cue Notchpad #{version} 使用 ad-hoc 签名，未经过 Apple 公证。
-    确认下载来源可信后，可在“系统设置 → 隐私与安全性”选择“仍要打开”，
-    或仅移除该 app 的 quarantine 属性：
-
-      xattr -dr com.apple.quarantine "#{appdir}/Cue Notchpad.app"
+    Homebrew 安装完成后会自动移除该 app 的 quarantine 属性。
   EOS
 end

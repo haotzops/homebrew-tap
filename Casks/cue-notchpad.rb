@@ -1,8 +1,8 @@
 cask "cue-notchpad" do
-  version "0.3.0"
-  sha256 "a90297e4c083eeb038f7b461bda58fabc124841070eac8b7862eb07e6ed75bbe"
+  version "0.3.1"
+  sha256 "697330d6f34e8d7b1ddaccf8577dd49bf0e7bfa16842cd560f91f4a7f7691e67"
 
-  url "https://github.com/haotzops/cue-notchpad/releases/download/v#{version}/Cue-Notchpad-#{version}-macOS-universal.zip"
+  url "https://github.com/haotzops/cue-notchpad/releases/download/v#{version}/Cue-Notchpad-#{version}-macOS-arm64.zip"
   name "Cue Notchpad"
   desc "Notch-attached prompt editor for command-line workflows"
   homepage "https://github.com/haotzops/cue-notchpad"

@@ -1,6 +1,6 @@
 cask "cue-notchpad" do
   version "0.3.1"
-  sha256 "697330d6f34e8d7b1ddaccf8577dd49bf0e7bfa16842cd560f91f4a7f7691e67"
+  sha256 "6222b72f1b217e829d75dc93c744bc625e65af6eeb66b23f078c5f89c5ded1ed"
 
   url "https://github.com/haotzops/cue-notchpad/releases/download/v#{version}/Cue-Notchpad-#{version}-macOS-arm64.zip"
   name "Cue Notchpad"
@@ -8,9 +8,11 @@ cask "cue-notchpad" do
   homepage "https://github.com/haotzops/cue-notchpad"
 
   depends_on macos: :ventura
+  depends_on arch: :arm64
 
   app "Cue Notchpad.app"
-  binary "#{appdir}/Cue Notchpad.app/Contents/MacOS/cue", target: "cue"
+  command_wrapper "cue",
+                   executable: "#{appdir}/Cue Notchpad.app/Contents/MacOS/cue"
 
   postflight do
     app_path = appdir/"Cue Notchpad.app"

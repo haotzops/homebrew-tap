@@ -10,15 +10,13 @@ cask "cue-notchpad" do
   depends_on macos: :tahoe
   depends_on arch: :arm64
 
-  preflight do
-    result = system_command(
-      "/usr/bin/pgrep",
-      args: ["-x", "cue-host"],
-      must_succeed: false,
-      print_stdout: false,
-      print_stderr: false,
-    )
-    raise Cask::CaskError, "Cue has an active edit session; submit or cancel it before updating." if result.success?
+  preflight_steps do
+    run "/bin/sh", args: [
+      "-c",
+      'if /usr/bin/pgrep -x cue-host >/dev/null 2>&1; then ' \
+      'echo "Cue has an active edit session; submit or cancel it before updating." >&2; ' \
+      "exit 1; fi",
+    ]
   end
 
   app "Cue Notchpad.app"
